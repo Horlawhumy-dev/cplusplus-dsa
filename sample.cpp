@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 #include <sstream>
 #include <string>
 using namespace std;
@@ -39,11 +39,76 @@ class RaceCar: public Car {
 };
 
 
+long long findMaxSubArray(vector<int>& arr) {
+    /*
+
+        #Kadane's Algorithm#
+        Given an array of integers,  find the maximum subarray sum of the given array.
+        T(n) = O(n)
+        Space Complexity = O(i)
+    */
+
+    long long maxSub = 0ll;
+    long long sum = 0ll;
+
+    for (long long value: arr) {
+        // either this or 
+        // sum = max(value, sum+value);
+        sum = sum + value;
+        maxSub = max(maxSub, sum);
+
+        // this => no need of tracking negative sum value.
+        if (sum < 0) {
+            sum = 0;
+        }
+    }
+
+
+   return maxSub;
+};
+
+
+void addElem(vector<int> &concat, vector<int> &arr) {
+    for (int val: arr) {
+        concat.push_back(val);
+    }
+}
+
+long long maxSubSumKConcat(vector<int> &arr, int n, int k)
+{
+	// Write your code here.
+    int len = n*k;
+
+    vector<int> concat = {0 * len};
+
+    for(int i = 0; i<k; i++) {
+        addElem(concat, arr);
+    }
+
+    long long maxSum = findMaxSubArray(concat);
+
+    return maxSum;
+}
+
 
 int main() {
+    // vector<int> arr = {-17, -278, -38, -4, -5, -67};
 
-    RaceCar rc = RaceCar(5, "Red", 150);
+    // long long maxSum = maxSubSumKConcat(arr, 6, 7);
 
-    rc.printRaceCarInfo();
+    // cout << maxSum << "\n";
+
+    int maxSumRect = 0;
+
+    vector<vector<int>> arr = {{1, 2}, {0, 2, 1}, {1, 3, 1}};
+
+	for (int i = 0; i < arr.size(); i++) {
+		// vector<int> inner =;
+
+		int sumVal = accumulate( arr[i].begin(),  arr[i].end(), 0);
+		maxSumRect = max(maxSumRect, sumVal);
+	}
+
+    cout << maxSumRect << endl;
     return 0;
 }
