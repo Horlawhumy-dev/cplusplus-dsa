@@ -26,7 +26,7 @@ int find_largest_sum_subarray(vector<int> &arr) {
         sum = max(val ,sum+val);
 
         if (sum > maxSum) {
-            cout << val << " ";
+            // cout << val << " ";
             maxSum = sum;
         }
     }
@@ -37,7 +37,7 @@ int find_largest_sum_subarray(vector<int> &arr) {
 
 int main() {
 
-     vector<int> arr = {1, -2, 3, 4, 5, -6};
+    vector<int> arr = {1};
 
     int maxSum = find_largest_sum_subarray(arr);
 

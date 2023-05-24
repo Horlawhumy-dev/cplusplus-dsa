@@ -31,8 +31,8 @@ string removeConsecutiveDuplicates(string input)
 
 int main()
 {
-    string str;
-    cin >> str;
+    string str = "abbaca";
+    // cin >> str;
     string ans = removeConsecutiveDuplicates(str);
     cout << ans << endl;
 }
